@@ -1,0 +1,53 @@
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import NotFound from "@/pages/NotFound";
+import { Route, Switch } from "wouter";
+import ErrorBoundary from "./components/ErrorBoundary";
+import FloatingButton from "./components/FloatingButton";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import Landing from "./pages/Landing";
+import Home from "./pages/Home";
+import SaberMais from "./pages/SaberMais";
+import Detalhes from "./pages/Detalhes";
+import { Galeria } from "./Hearder";
+
+
+function Router() {
+  return (
+    <Switch>
+      <Route path={"/"} component={Landing} />
+      <Route path={"/home"} component={Home} />
+      <Route path={"/galeria"} component={Galeria} />
+      <Route path={"/saber-mais"} component={SaberMais} />
+      <Route path={"/detalhes/:id"} component={Detalhes} />
+      <Route path={"/404"} component={NotFound} />
+      {/* Final fallback route */}
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+// NOTE: About Theme
+// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
+//   to keep consistent foreground/background color across components
+// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider defaultTheme="light">
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+          <FloatingButton />
+        </TooltipProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+    
+  );
+}
+
+export default App;
+
+export { App };
+
