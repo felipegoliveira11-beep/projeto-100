@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-const staticPath = path.resolve(__dirname, "public");
+const staticPath = path.resolve(__dirname, "../dist/public");
 
 app.use(express.static(staticPath));
 
